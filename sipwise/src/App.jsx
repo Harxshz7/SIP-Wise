@@ -51,7 +51,7 @@ function App() {
         <div className="title-bar-gradient flex items-center justify-between px-2 py-1 select-none">
           <div className="flex items-center gap-2">
             <span className="text-white font-heading text-sm md:text-base tracking-wide text-rainbow">
-              SIPLY.EXE
+              SIPWISE.EXE
             </span>
             <span className="text-white font-sans text-xs md:text-sm font-bold">
               — SIP CALCULATOR v1.00
@@ -83,12 +83,12 @@ function App() {
         <div className="border-b border-border-dark bg-white text-xs py-1 select-none">
           <MarqueeComponent speed={40} gradient={false} play={true}>
             <span className="px-4 font-mono font-bold tracking-wider" aria-live="polite">
-              WELCOME TO SIPLY • CALCULATE YOUR SIP RETURNS • COMPOUND INTEREST IS YOUR FRIEND • MAKE YOUR WEALTH GROW FAST! •
+              WELCOME TO SIPWISE • CALCULATE YOUR SIP RETURNS • COMPOUND INTEREST IS YOUR FRIEND • MAKE YOUR WEALTH GROW FAST! •
             </span>
           </MarqueeComponent>
           {/* sr-only fallback */}
           <span className="sr-only">
-            Welcome to Siply. Calculate your SIP returns. Compound interest is your friend.
+            Welcome to Sipwise. Calculate your SIP returns. Compound interest is your friend.
           </span>
         </div>
 
@@ -140,7 +140,7 @@ function App() {
           </span>
         </div>
         <div className="text-center text-[10px] text-muted mt-2 font-mono uppercase">
-          POWERED BY SIPLY ENGINE 95 • SYSTEM PORT OK • LOCAL TIME: {new Date().toLocaleTimeString()}
+          POWERED BY SIPWISE ENGINE 95 • SYSTEM PORT OK • LOCAL TIME: {new Date().toLocaleTimeString()}
         </div>
       </footer>
     </div>
