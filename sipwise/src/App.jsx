@@ -3,6 +3,7 @@ import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Marquee from 'react-fast-marquee';
 import CalculatorPage from './components/CalculatorPage';
 import AboutPage from './components/AboutPage';
+import MarketPulsePage from './components/MarketPulsePage';
 
 // ESM Interop helper for react-fast-marquee
 const MarqueeComponent = Marquee && (Marquee.default || Marquee);
@@ -12,11 +13,11 @@ function App() {
 
   // Update document title on route change
   useEffect(() => {
-    if (location.pathname === '/about') {
-      document.title = 'Sipwise — About';
-    } else {
-      document.title = 'Sipwise — SIP Calculator';
-    }
+    const titles = {
+      '/about': 'Sipwise — About',
+      '/market-pulse': 'Sipwise — Market Pulse',
+    };
+    document.title = titles[location.pathname] || 'Sipwise — SIP Calculator';
   }, [location.pathname]);
 
   return (
@@ -31,14 +32,23 @@ function App() {
               SIPWISE.EXE
             </Link>
             <span className="text-white font-sans text-xs md:text-sm font-bold">
-              {location.pathname === '/about' ? '— ABOUT' : '— SIP CALCULATOR v1.00'}
+              {location.pathname === '/about'
+                ? '— ABOUT'
+                : location.pathname === '/market-pulse'
+                  ? '— MARKET PULSE'
+                  : '— SIP CALCULATOR v1.00'}
             </span>
           </div>
         </div>
 
         {/* Menu bar */}
         <div className="flex items-center gap-4 px-2 py-1 text-xs border-b border-border-dark">
-          <span className="cursor-pointer hover:underline">File</span>
+          <Link
+            to="/market-pulse"
+            className="cursor-pointer hover:underline no-underline text-black retro-focus"
+          >
+            Market Pulse
+          </Link>
           <span className="cursor-pointer hover:underline">Edit</span>
           <span className="cursor-pointer hover:underline">Run</span>
           <Link
@@ -66,6 +76,7 @@ function App() {
         <Routes>
           <Route path="/" element={<CalculatorPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/market-pulse" element={<MarketPulsePage />} />
         </Routes>
       </div>
 
