@@ -1,37 +1,30 @@
-// ResultCards — Headline result display with invested / returns / maturity
-import { Wallet, TrendingUp, Trophy } from 'lucide-react';
+// ResultCards — Win95-style headline result cards with styled title bars and mono values
 import { formatCurrency } from '../utils/formatCurrency';
 
 const CARDS = [
   {
     key: 'invested',
-    label: 'Total Invested',
-    icon: Wallet,
-    accent: false,
-    color: 'text-sky-400',
-    border: 'border-sky-500/20',
-    bg: 'bg-sky-500/5',
-    iconBg: 'bg-sky-500/10',
+    label: 'TOTAL INVESTED',
+    color: 'text-black',
+    titleBg: 'bg-accent', // Accent blue #0000FF
+    border: 'bevel-out',
+    glow: false,
   },
   {
     key: 'returns',
-    label: 'Est. Returns',
-    icon: TrendingUp,
-    accent: false,
-    color: 'text-emerald-400',
-    border: 'border-emerald-500/20',
-    bg: 'bg-emerald-500/5',
-    iconBg: 'bg-emerald-500/10',
+    label: 'EST. RETURNS',
+    color: 'text-success-dark', // #00AA00
+    titleBg: 'bg-success-dark', // #00AA00
+    border: 'bevel-out',
+    glow: false,
   },
   {
     key: 'maturity',
-    label: 'Total Value',
-    icon: Trophy,
-    accent: true,
-    color: 'text-amber-400',
-    border: 'border-amber-500/30',
-    bg: 'bg-amber-500/5',
-    iconBg: 'bg-amber-500/10',
+    label: 'TOTAL VALUE',
+    color: 'text-blue-900',
+    titleBg: 'title-bar-gradient', // Navy-gradient
+    border: 'bevel-out animate-pulse-glow',
+    glow: true,
   },
 ];
 
@@ -39,44 +32,31 @@ export default function ResultCards({ invested, returns, maturity }) {
   const vals = { invested, returns, maturity };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
       {CARDS.map((c) => {
-        const Icon = c.icon;
         return (
           <div
             key={c.key}
-            className={`
-              relative overflow-hidden rounded-2xl border p-5
-              ${c.border} ${c.bg}
-              backdrop-blur-sm
-              transition-all duration-300
-              hover:scale-[1.02] hover:shadow-lg hover:shadow-indigo-500/5
-              ${c.accent ? 'sm:ring-1 sm:ring-amber-500/20' : ''}
-            `}
+            className={`bg-background p-1 select-none flex flex-col ${c.border}`}
           >
-            {/* Subtle gradient glow for the accent card */}
-            {c.accent && (
-              <div className="absolute -top-12 -right-12 h-32 w-32 rounded-full bg-amber-500/10 blur-2xl" />
-            )}
-
-            <div className="relative flex items-center gap-3 mb-3">
-              <div className={`flex items-center justify-center w-8 h-8 rounded-lg ${c.iconBg}`}>
-                <Icon size={16} className={c.color} />
-              </div>
-              <span className="text-xs font-medium uppercase tracking-wider text-slate-400">
-                {c.label}
-              </span>
+            {/* Card title bar strip */}
+            <div className={`${c.titleBg} px-2 py-0.5 text-[10px] font-heading text-white tracking-wider flex items-center justify-between`}>
+              <span>{c.label}</span>
+              {c.glow && (
+                <span className="w-1.5 h-1.5 bg-yellow-400 border border-black inline-block animate-ping rounded-full" />
+              )}
             </div>
 
-            <p
-              className={`
-                relative font-bold tracking-tight
-                ${c.color}
-                ${c.accent ? 'text-2xl sm:text-3xl' : 'text-xl sm:text-2xl'}
-              `}
-            >
-              {formatCurrency(vals[c.key])}
-            </p>
+            {/* Content area */}
+            <div className="bg-white bevel-in m-1 p-3 flex-1 flex items-center justify-center min-h-[50px]">
+              <p
+                className={`font-mono font-bold tracking-tighter text-center ${c.color} ${
+                  c.glow ? 'text-lg sm:text-2xl' : 'text-base sm:text-xl'
+                }`}
+              >
+                {formatCurrency(vals[c.key])}
+              </p>
+            </div>
           </div>
         );
       })}

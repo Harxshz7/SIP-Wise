@@ -1,12 +1,10 @@
-// InputPanel — SIP input controls with synced number inputs + range sliders
+// InputPanel — SIP input controls styled in 90s Win95/98 aesthetic
 import { useCallback } from 'react';
-import { IndianRupee, Percent, Calendar, TrendingUp } from 'lucide-react';
 
 const FIELDS = [
   {
     key: 'monthlyAmount',
-    label: 'Monthly Investment',
-    icon: IndianRupee,
+    label: 'MONTHLY INVESTMENT',
     min: 500,
     max: 200000,
     step: 500,
@@ -15,8 +13,7 @@ const FIELDS = [
   },
   {
     key: 'annualRate',
-    label: 'Expected Return',
-    icon: Percent,
+    label: 'EXPECTED RETURN',
     min: 1,
     max: 30,
     step: 0.5,
@@ -25,18 +22,16 @@ const FIELDS = [
   },
   {
     key: 'years',
-    label: 'Time Period',
-    icon: Calendar,
+    label: 'TIME PERIOD',
     min: 1,
     max: 40,
     step: 1,
     prefix: '',
-    suffix: ' yrs',
+    suffix: ' YRS',
   },
   {
     key: 'stepUpPercent',
-    label: 'Annual Step-up',
-    icon: TrendingUp,
+    label: 'ANNUAL STEP-UP',
     min: 0,
     max: 50,
     step: 1,
@@ -73,27 +68,25 @@ export default function InputPanel({ values, onChange }) {
   );
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-4">
       {FIELDS.map((f) => {
-        const Icon = f.icon;
         const val = values[f.key];
 
         return (
-          <div key={f.key} className="group">
+          <div key={f.key} className="bevel-out bg-background p-2.5 transition-none">
             {/* Label row */}
             <div className="flex items-center justify-between mb-2">
               <label
                 htmlFor={`input-${f.key}`}
-                className="flex items-center gap-2 text-sm font-medium text-slate-300"
+                className="text-[11px] font-heading tracking-wider text-black select-none"
               >
-                <Icon size={16} className="text-indigo-400" />
                 {f.label}
               </label>
 
-              {/* Inline number input with suffix */}
-              <div className="flex items-center gap-1 rounded-lg bg-slate-800/60 border border-slate-700/50 px-3 py-1.5">
+              {/* Sunken number input */}
+              <div className="flex items-center bg-white bevel-in px-1 py-0.5 w-24">
                 {f.prefix && (
-                  <span className="text-sm text-slate-400">{f.prefix}</span>
+                  <span className="text-xs text-muted font-mono select-none mr-1">{f.prefix}</span>
                 )}
                 <input
                   id={`input-${f.key}`}
@@ -106,19 +99,16 @@ export default function InputPanel({ values, onChange }) {
                     handleNumberChange(f.key, e.target.value, f)
                   }
                   onBlur={(e) => handleBlur(f.key, e.target.value, f)}
-                  className="w-20 bg-transparent text-right text-sm font-semibold text-white
-                             outline-none appearance-none
-                             [&::-webkit-inner-spin-button]:appearance-none
-                             [&::-webkit-outer-spin-button]:appearance-none
-                             [-moz-appearance:textfield]"
+                  className="w-full bg-transparent text-right text-xs font-mono font-bold text-black
+                             outline-none appearance-none border-none p-0 retro-focus"
                 />
                 {f.suffix && (
-                  <span className="text-sm text-slate-400">{f.suffix}</span>
+                  <span className="text-xs text-muted font-mono select-none ml-1">{f.suffix}</span>
                 )}
               </div>
             </div>
 
-            {/* Range slider */}
+            {/* Retro range slider */}
             <input
               type="range"
               min={f.min}
@@ -127,30 +117,11 @@ export default function InputPanel({ values, onChange }) {
               value={val}
               onChange={(e) => onChange(f.key, Number(e.target.value))}
               aria-label={f.label}
-              className="w-full h-1.5 rounded-full appearance-none cursor-pointer
-                         bg-slate-700
-                         accent-indigo-500
-                         [&::-webkit-slider-thumb]:appearance-none
-                         [&::-webkit-slider-thumb]:w-4
-                         [&::-webkit-slider-thumb]:h-4
-                         [&::-webkit-slider-thumb]:rounded-full
-                         [&::-webkit-slider-thumb]:bg-indigo-500
-                         [&::-webkit-slider-thumb]:shadow-[0_0_8px_rgba(99,102,241,0.5)]
-                         [&::-webkit-slider-thumb]:transition-transform
-                         [&::-webkit-slider-thumb]:duration-150
-                         [&::-webkit-slider-thumb]:hover:scale-125
-                         [&::-moz-range-thumb]:w-4
-                         [&::-moz-range-thumb]:h-4
-                         [&::-moz-range-thumb]:rounded-full
-                         [&::-moz-range-thumb]:bg-indigo-500
-                         [&::-moz-range-thumb]:border-none
-                         [&::-moz-range-thumb]:shadow-[0_0_8px_rgba(99,102,241,0.5)]
-                         [&::-webkit-slider-runnable-track]:rounded-full
-                         [&::-moz-range-track]:rounded-full"
+              className="retro-slider w-full mt-2 transition-none"
             />
 
             {/* Min / Max hint */}
-            <div className="flex justify-between mt-1 text-[11px] text-slate-500">
+            <div className="flex justify-between mt-1 text-[9px] font-mono text-muted select-none">
               <span>
                 {f.prefix}{f.min.toLocaleString('en-IN')}{f.suffix}
               </span>

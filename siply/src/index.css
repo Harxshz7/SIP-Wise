@@ -1,9 +1,37 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "./styles/retro.css";
 
 /* ── Base tokens ─────────────────────────────────── */
 @theme {
-  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --color-background: #C0C0C0;
+  --color-foreground: #000000;
+  --color-muted: #808080;
+  --color-accent: #0000FF;
+  --color-secondary: #FF0000;
+  --color-tertiary: #FFFF00;
+  --color-success: #00FF00;
+  --color-success-dark: #00AA00;
+  --color-border: #000000;
+  --color-border-light: #FFFFFF;
+  --color-border-dark: #808080;
+  --color-title-bar: #000080;
+  --color-title-bar-gradient-end: #1084D0;
+  --color-panel-yellow: #FFFFCC;
+  --color-visited-link: #800080;
+  --color-hover-link: #FF0000;
+
+  --radius: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-full: 0px;
+
+  --font-sans: "MS Sans Serif", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --font-heading: "Arial Black", Impact, Haettenschweiler, sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
 }
 
 /* ── Global reset / base ─────────────────────────── */
@@ -11,44 +39,15 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #020617; /* slate-950 */
-}
-
-/* ── Smooth transitions on all interactive elements ─ */
-input[type="range"] {
-  transition: opacity 0.15s ease;
-}
-
-input[type="range"]:hover {
-  opacity: 1;
+  background: var(--color-background);
 }
 
 /* ── Recharts overrides ──────────────────────────── */
 .recharts-legend-item-text {
-  color: #cbd5e1 !important; /* slate-300 */
+  color: var(--color-foreground) !important;
 }
 
-/* Remove Recharts default background on the tooltip wrapper
-   since we use a fully custom tooltip component */
+/* Remove Recharts default background on the tooltip wrapper */
 .recharts-tooltip-wrapper {
   outline: none !important;
-}
-
-/* ── Scrollbar (Webkit) ──────────────────────────── */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.2);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.35);
 }

@@ -1,0 +1,192 @@
+/* ═══════════════════════════════════════════════════════════════
+   retro.css — 90s Nostalgia design system: animations, patterns,
+   bevels, and CSS variables that Tailwind config can't express.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Reusable bevel box-shadows ──────────────────────────────── */
+:root {
+  --bevel-out: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
+  --bevel-in:  inset 1px 1px 0 #808080, inset -1px -1px 0 #fff;
+}
+
+/* ── Rainbow text animation ──────────────────────────────────── */
+@keyframes rainbow {
+  0%   { color: #FF0000; }
+  15%  { color: #FF8000; }
+  30%  { color: #FFFF00; }
+  45%  { color: #00FF00; }
+  60%  { color: #0000FF; }
+  75%  { color: #8000FF; }
+  90%  { color: #FF00FF; }
+  100% { color: #FF0000; }
+}
+
+.text-rainbow {
+  animation: rainbow 4s linear infinite;
+}
+
+/* ── Pulse-glow animation for the maturity card ──────────────── */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: var(--bevel-out), 0 0 4px #000080; }
+  50%      { box-shadow: var(--bevel-out), 0 0 12px #0000FF, 0 0 4px #000080; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+/* ── Reduced motion: fall back to static styles ──────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .text-rainbow {
+    animation: none;
+    color: #0000FF;
+  }
+
+  .animate-pulse-glow {
+    animation: none;
+    box-shadow: var(--bevel-out), 0 0 6px #0000FF;
+  }
+}
+
+/* ── 90s tiled crosshatch background ─────────────────────────── */
+.bg-90s-tile {
+  background-color: #C0C0C0;
+  background-image:
+    linear-gradient(45deg, #b8b8b8 25%, transparent 25%),
+    linear-gradient(-45deg, #b8b8b8 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #b8b8b8 75%),
+    linear-gradient(-45deg, transparent 75%, #b8b8b8 75%);
+  background-size: 4px 4px;
+  background-position: 0 0, 0 2px, 2px -2px, -2px 0;
+}
+
+/* ── Construction / hazard stripe pattern ────────────────────── */
+.bg-construction {
+  background: repeating-linear-gradient(
+    -45deg,
+    #FFFF00,
+    #FFFF00 10px,
+    #000000 10px,
+    #000000 20px
+  );
+}
+
+/* ── Groove divider (HR) ─────────────────────────────────────── */
+.hr-groove {
+  border: none;
+  height: 2px;
+  background: #808080;
+  box-shadow: 0 1px 0 #fff;
+  margin: 8px 0;
+}
+
+/* ── Bevel helper classes ────────────────────────────────────── */
+.bevel-out {
+  border: 2px solid;
+  border-color: #fff #808080 #808080 #fff;
+  box-shadow: var(--bevel-out);
+}
+
+.bevel-in {
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+  box-shadow: var(--bevel-in);
+}
+
+/* ── Focus outline for accessibility (dotted, black, 2px) ───── */
+.retro-focus:focus-visible {
+  outline: 2px dotted #000000;
+  outline-offset: 2px;
+}
+
+/* ── Title bar gradient ──────────────────────────────────────── */
+.title-bar-gradient {
+  background: linear-gradient(90deg, #000080, #1084D0);
+}
+
+/* ── Retro range slider overrides ────────────────────────────── */
+input[type="range"].retro-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+input[type="range"].retro-slider::-webkit-slider-runnable-track {
+  height: 6px;
+  background: #fff;
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+  border-radius: 0;
+}
+
+input[type="range"].retro-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 18px;
+  margin-top: -8px;
+  background: #C0C0C0;
+  border: 2px solid;
+  border-color: #fff #808080 #808080 #fff;
+  border-radius: 0;
+  cursor: pointer;
+  box-shadow: var(--bevel-out);
+}
+
+input[type="range"].retro-slider::-moz-range-track {
+  height: 6px;
+  background: #fff;
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+  border-radius: 0;
+}
+
+input[type="range"].retro-slider::-moz-range-thumb {
+  width: 14px;
+  height: 18px;
+  background: #C0C0C0;
+  border: 2px solid;
+  border-color: #fff #808080 #808080 #fff;
+  border-radius: 0;
+  cursor: pointer;
+  box-shadow: var(--bevel-out);
+}
+
+input[type="range"].retro-slider:focus-visible {
+  outline: 2px dotted #000000;
+  outline-offset: 2px;
+}
+
+/* ── Retro scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: #C0C0C0;
+  border: 1px solid #808080;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C0C0C0;
+  border: 2px solid;
+  border-color: #fff #808080 #808080 #fff;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d0d0d0;
+}
+
+::-webkit-scrollbar-button {
+  display: block;
+  height: 16px;
+  width: 16px;
+  background: #C0C0C0;
+  border: 2px solid;
+  border-color: #fff #808080 #808080 #fff;
+}

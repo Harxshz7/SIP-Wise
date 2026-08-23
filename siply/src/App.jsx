@@ -1,10 +1,14 @@
 import { useState, useMemo, useCallback } from 'react';
-import { Calculator } from 'lucide-react';
+import Marquee from 'react-fast-marquee';
 import { calculateSIP, calculateStepUpSIP, getYearlyBreakdown } from './utils/sipCalculator';
+import { formatCurrency } from './utils/formatCurrency';
 import InputPanel from './components/InputPanel';
 import ResultCards from './components/ResultCards';
 import GrowthChart from './components/GrowthChart';
 import YearWiseTable from './components/YearWiseTable';
+
+// ESM Interop helper for react-fast-marquee
+const MarqueeComponent = Marquee && (Marquee.default || Marquee);
 
 const DEFAULTS = {
   monthlyAmount: 5000,
@@ -39,58 +43,106 @@ function App() {
   }, [inputs]);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
-      {/* Ambient background glow */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-indigo-600/15 blur-[120px]" />
-        <div className="absolute top-1/3 -right-20 h-80 w-80 rounded-full bg-purple-600/10 blur-[100px]" />
-        <div className="absolute -bottom-20 left-1/3 h-72 w-72 rounded-full bg-sky-600/8 blur-[100px]" />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        {/* Header */}
-        <header className="mb-8 sm:mb-12 text-center">
-          <div className="inline-flex items-center gap-3 mb-3">
-            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-indigo-500/15 ring-1 ring-indigo-500/30">
-              <Calculator size={20} className="text-indigo-400" />
-            </div>
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
-              Siply
-            </h1>
+    <div className="min-h-screen bg-90s-tile text-black font-sans p-2 sm:p-6 flex flex-col justify-between">
+      {/* Main retro window */}
+      <div className="mx-auto w-full max-w-5xl bevel-out bg-background p-1 select-none">
+        
+        {/* Title bar */}
+        <div className="title-bar-gradient flex items-center justify-between px-2 py-1 select-none">
+          <div className="flex items-center gap-2">
+            <span className="text-white font-heading text-sm md:text-base tracking-wide text-rainbow">
+              SIPLY.EXE
+            </span>
+            <span className="text-white font-sans text-xs md:text-sm font-bold">
+              — SIP CALCULATOR v1.00
+            </span>
           </div>
-          <p className="text-sm text-slate-400 max-w-md mx-auto">
-            Plan your SIP investments with precision. See how your money grows over time with step-up contributions.
-          </p>
-        </header>
+          {/* Win95 window controls */}
+          <div className="flex items-center gap-1">
+            <button className="w-5 h-5 bevel-out bg-background font-bold text-xs flex items-center justify-center retro-focus cursor-pointer" aria-label="Minimize">
+              _
+            </button>
+            <button className="w-5 h-5 bevel-out bg-background font-bold text-xs flex items-center justify-center retro-focus cursor-pointer" aria-label="Maximize">
+              🗖
+            </button>
+            <button className="w-5 h-5 bevel-out bg-background font-bold text-xs flex items-center justify-center retro-focus text-red-700 cursor-pointer" aria-label="Close">
+              X
+            </button>
+          </div>
+        </div>
 
-        {/* Main layout: sidebar inputs + right content */}
-        <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6 lg:gap-8">
-          {/* Input Panel */}
-          <aside className="rounded-2xl border border-slate-700/30 bg-slate-800/30 backdrop-blur-sm p-5 sm:p-6 h-fit lg:sticky lg:top-8">
-            <h2 className="text-base font-semibold text-slate-200 mb-5">
-              Configure your SIP
-            </h2>
-            <InputPanel values={inputs} onChange={handleChange} />
+        {/* Menu bar */}
+        <div className="flex items-center gap-4 px-2 py-1 text-xs border-b border-border-dark">
+          <span className="cursor-pointer hover:underline">File</span>
+          <span className="cursor-pointer hover:underline">Edit</span>
+          <span className="cursor-pointer hover:underline">Run</span>
+          <span className="cursor-pointer hover:underline">Help</span>
+        </div>
+
+        {/* Marquee strip */}
+        <div className="border-b border-border-dark bg-white text-xs py-1 select-none">
+          <MarqueeComponent speed={40} gradient={false} play={true}>
+            <span className="px-4 font-mono font-bold tracking-wider" aria-live="polite">
+              WELCOME TO SIPLY • CALCULATE YOUR SIP RETURNS • COMPOUND INTEREST IS YOUR FRIEND • MAKE YOUR WEALTH GROW FAST! •
+            </span>
+          </MarqueeComponent>
+          {/* sr-only fallback */}
+          <span className="sr-only">
+            Welcome to Siply. Calculate your SIP returns. Compound interest is your friend.
+          </span>
+        </div>
+
+        {/* Content Area */}
+        <div className="p-3 bg-background grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-4">
+          {/* Sidebar Panel (Inputs) */}
+          <aside className="bevel-in bg-panelYellow p-4 flex flex-col justify-between">
+            <div>
+              <div className="bg-title-bar text-white px-2 py-0.5 text-xs font-bold font-heading tracking-wide mb-4">
+                CONFIG.SYS
+              </div>
+              <InputPanel values={inputs} onChange={handleChange} />
+            </div>
+
+            {/* Hit Counter / Wealth Gained result */}
+            <div className="mt-6">
+              <div className="text-[10px] uppercase font-bold text-muted mb-1">
+                Accumulated Statistics
+              </div>
+              <div className="bg-black border-2 border-border-dark p-2 text-center text-success font-mono text-sm tracking-widest select-all">
+                WEALTH GAINED: {formatCurrency(results.returns)}
+              </div>
+            </div>
           </aside>
 
-          {/* Results area */}
-          <main className="space-y-6">
+          {/* Main Display Area (Results, Chart, Table) */}
+          <main className="space-y-4">
+            {/* Headline cards */}
             <ResultCards
               invested={results.invested}
               returns={results.returns}
               maturity={results.maturity}
             />
+
+            {/* Chart Area */}
             <GrowthChart data={yearlyData} />
+
+            {/* Table Area */}
             <YearWiseTable data={yearlyData} />
           </main>
         </div>
-
-        {/* Footer */}
-        <footer className="mt-12 text-center text-xs text-slate-600">
-          Calculations are indicative. Actual returns depend on market conditions.
-        </footer>
       </div>
+
+      {/* Footer / Disclaimer with construction stripes */}
+      <footer className="mx-auto w-full max-w-5xl mt-6">
+        <div className="bg-construction text-black text-center py-2 bevel-out font-bold text-xs select-none border border-black">
+          <span className="bg-white px-2 py-0.5 border border-black inline-block font-mono tracking-tighter">
+            CAUTION: ESTIMATES ONLY. NOT INVESTMENT ADVICE. DO YOUR OWN RESEARCH.
+          </span>
+        </div>
+        <div className="text-center text-[10px] text-muted mt-2 font-mono uppercase">
+          POWERED BY SIPLY ENGINE 95 • SYSTEM PORT OK • LOCAL TIME: {new Date().toLocaleTimeString()}
+        </div>
+      </footer>
     </div>
   );
 }
