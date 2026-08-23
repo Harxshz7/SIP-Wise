@@ -63,7 +63,7 @@ function App() {
               _
             </button>
             <button className="w-5 h-5 bevel-out bg-background font-bold text-xs flex items-center justify-center retro-focus cursor-pointer" aria-label="Maximize">
-              🗖
+              ☐
             </button>
             <button className="w-5 h-5 bevel-out bg-background font-bold text-xs flex items-center justify-center retro-focus text-red-700 cursor-pointer" aria-label="Close">
               X
