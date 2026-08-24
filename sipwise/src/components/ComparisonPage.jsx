@@ -273,17 +273,17 @@ export default function ComparisonPage() {
   return (
     <div className="p-3 bg-background">
       <Helmet>
-        <title>Sipwise — SIP vs FD vs RD Comparison</title>
-        <meta name="description" content="Compare Mutual Fund SIP returns against traditional Fixed Deposits (FD) and Recurring Deposits (RD) to make informed investment decisions." />
+        <title>SIP vs FD Calculator — SIP vs FD vs RD Comparison | Sipwise</title>
+        <meta name="description" content="Use our SIP vs FD calculator for a detailed SIP vs FD vs RD comparison. See how market-linked growth stacks up against fixed deposit returns." />
         <link rel="canonical" href="https://sipwise.vercel.app/compare" />
-        <meta property="og:title" content="Sipwise — SIP vs FD vs RD Comparison" />
-        <meta property="og:description" content="Compare Mutual Fund SIP returns against traditional Fixed Deposits (FD) and Recurring Deposits (RD) to make informed investment decisions." />
+        <meta property="og:title" content="SIP vs FD Calculator — SIP vs FD vs RD Comparison | Sipwise" />
+        <meta property="og:description" content="Use our SIP vs FD calculator for a detailed SIP vs FD vs RD comparison. See how market-linked growth stacks up against fixed deposit returns." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sipwise.vercel.app/compare" />
         <meta property="og:image" content="https://sipwise.vercel.app/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Sipwise — SIP vs FD vs RD Comparison" />
-        <meta name="twitter:description" content="Compare Mutual Fund SIP returns against traditional Fixed Deposits (FD) and Recurring Deposits (RD) to make informed investment decisions." />
+        <meta name="twitter:title" content="SIP vs FD Calculator — SIP vs FD vs RD Comparison | Sipwise" />
+        <meta name="twitter:description" content="Use our SIP vs FD calculator for a detailed SIP vs FD vs RD comparison. See how market-linked growth stacks up against fixed deposit returns." />
         <meta name="twitter:image" content="https://sipwise.vercel.app/og-image.png" />
       </Helmet>
 
@@ -304,6 +304,10 @@ export default function ComparisonPage() {
         <div className="bevel-in bg-white p-4 sm:p-6 space-y-6">
 
           <h1 className="sr-only">SIP vs FD vs RD Comparison</h1>
+
+          <div className="text-sm leading-relaxed mb-4 text-black px-1 border-b border-border-dark pb-4">
+            This SIP vs FD calculator provides a clear SIP vs FD vs RD comparison. It helps you evaluate if taking market risks could potentially yield better results than standard fixed deposit returns.
+          </div>
 
           {/* ── Input controls ─────────────────────────────── */}
           <section>

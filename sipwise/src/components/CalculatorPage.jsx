@@ -1,5 +1,6 @@
 import { useState, useMemo, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import { calculateSIP, calculateStepUpSIP, getYearlyBreakdown } from '../utils/sipCalculator';
 import { formatCurrency } from '../utils/formatCurrency';
 import InputPanel from './InputPanel';
@@ -43,7 +44,7 @@ export default function CalculatorPage() {
     "@context": "https://schema.org",
     "@type": ["WebApplication", "FinancialProduct"],
     "name": "Sipwise SIP Calculator",
-    "description": "Calculate your Systematic Investment Plan returns with Sipwise.",
+    "description": "Use our free SIP calculator India to estimate your mutual fund returns. A fast and accurate monthly investment calculator for your financial goals.",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Web",
     "offers": {
@@ -56,24 +57,31 @@ export default function CalculatorPage() {
   return (
     <div className="p-3 bg-background grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-4">
       <Helmet>
-        <title>Sipwise — Free SIP Calculator (India)</title>
-        <meta name="description" content="Calculate your Systematic Investment Plan returns with Sipwise. Easy, fast, and comprehensive tools for mutual fund investments." />
+        <title>SIP Calculator India — Calculate Mutual Fund Returns | Sipwise</title>
+        <meta name="description" content="Use our free SIP calculator India to estimate your mutual fund returns. A fast and accurate monthly investment calculator for your financial goals." />
         <link rel="canonical" href="https://sipwise.vercel.app/" />
-        <meta property="og:title" content="Sipwise — Free SIP Calculator (India)" />
-        <meta property="og:description" content="Calculate your Systematic Investment Plan returns with Sipwise. Easy, fast, and comprehensive tools for mutual fund investments." />
+        <meta property="og:title" content="SIP Calculator India — Calculate Mutual Fund Returns | Sipwise" />
+        <meta property="og:description" content="Use our free SIP calculator India to estimate your mutual fund returns. A fast and accurate monthly investment calculator for your financial goals." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sipwise.vercel.app/" />
         <meta property="og:image" content="https://sipwise.vercel.app/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Sipwise — Free SIP Calculator (India)" />
-        <meta name="twitter:description" content="Calculate your Systematic Investment Plan returns with Sipwise." />
+        <meta name="twitter:title" content="SIP Calculator India — Calculate Mutual Fund Returns | Sipwise" />
+        <meta name="twitter:description" content="Use our free SIP calculator India to estimate your mutual fund returns. A fast and accurate monthly investment calculator for your financial goals." />
         <meta name="twitter:image" content="https://sipwise.vercel.app/og-image.png" />
         <script type="application/ld+json">
           {JSON.stringify(schemaData)}
         </script>
       </Helmet>
       
-      <h1 className="sr-only">Free SIP Calculator (India)</h1>
+      <h1 className="sr-only">SIP Calculator India</h1>
+
+      {/* Introduction */}
+      <div className="bevel-out bg-white p-3 lg:col-span-2 text-sm leading-relaxed border border-border-dark">
+        A mutual fund SIP calculator helps you project the future value of your investments. By using this monthly investment calculator, you can visualize how compounding grows your wealth over time based on expected returns.{' '}
+        <Link to="/about" className="text-accent hover:underline retro-focus font-bold">Learn what SIP is</Link> or{' '}
+        <Link to="/compare" className="text-accent hover:underline retro-focus font-bold">see how SIP compares to FD and RD</Link>.
+      </div>
 
       {/* Sidebar Panel (Inputs) */}
       <aside className="bevel-in bg-panelYellow p-4 flex flex-col justify-between">

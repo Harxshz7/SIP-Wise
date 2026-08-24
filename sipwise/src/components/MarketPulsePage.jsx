@@ -615,17 +615,17 @@ export default function MarketPulsePage() {
   return (
     <div className="p-3 bg-background">
       <Helmet>
-        <title>Sipwise — Nifty & Sensex Market Pulse</title>
-        <meta name="description" content="View historical returns for Nifty 50 and Sensex and run a real-history SIP simulation to see how your investments would have actually performed." />
+        <title>Nifty Sensex Returns — Indian Stock Market Performance | Sipwise</title>
+        <meta name="description" content="Track Nifty Sensex returns and analyze Indian stock market performance. View Nifty 50 historical returns to simulate real-world investments." />
         <link rel="canonical" href="https://sipwise.vercel.app/market-pulse" />
-        <meta property="og:title" content="Sipwise — Nifty & Sensex Market Pulse" />
-        <meta property="og:description" content="View historical returns for Nifty 50 and Sensex and run a real-history SIP simulation to see how your investments would have actually performed." />
+        <meta property="og:title" content="Nifty Sensex Returns — Indian Stock Market Performance | Sipwise" />
+        <meta property="og:description" content="Track Nifty Sensex returns and analyze Indian stock market performance. View Nifty 50 historical returns to simulate real-world investments." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sipwise.vercel.app/market-pulse" />
         <meta property="og:image" content="https://sipwise.vercel.app/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Sipwise — Nifty & Sensex Market Pulse" />
-        <meta name="twitter:description" content="View historical returns for Nifty 50 and Sensex and run a real-history SIP simulation to see how your investments would have actually performed." />
+        <meta name="twitter:title" content="Nifty Sensex Returns — Indian Stock Market Performance | Sipwise" />
+        <meta name="twitter:description" content="Track Nifty Sensex returns and analyze Indian stock market performance. View Nifty 50 historical returns to simulate real-world investments." />
         <meta name="twitter:image" content="https://sipwise.vercel.app/og-image.png" />
       </Helmet>
 
@@ -645,7 +645,11 @@ export default function MarketPulsePage() {
         {/* Content area */}
         <div className="bevel-in bg-white p-4 sm:p-6 space-y-6">
 
-          <h1 className="sr-only">Market Pulse</h1>
+          <h1 className="sr-only">Nifty Sensex Returns</h1>
+
+          <div className="text-sm leading-relaxed mb-4 text-black px-1 border-b border-border-dark pb-4">
+            Tracking Nifty Sensex returns gives you a clear picture of overall Indian stock market performance. Use these benchmarks to understand how broad market trends, like Nifty 50 historical returns, could impact your portfolio.
+          </div>
 
           {/* Loading state */}
           {state.loading && <LoadingState />}

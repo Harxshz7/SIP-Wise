@@ -28,24 +28,22 @@ export default function AboutPage() {
   return (
     <div className="p-3 bg-background">
       <Helmet>
-        <title>Sipwise — About SIP Investing</title>
-        <meta name="description" content="Learn what a Systematic Investment Plan (SIP) is, how the power of compounding works, and how our calculator computes your returns." />
+        <title>What is SIP? Systematic Investment Plan Explained | Sipwise</title>
+        <meta name="description" content="Wondering what is SIP? Get the systematic investment plan explained simply, understand SIP compound interest, and learn how our SIP calculator works." />
         <link rel="canonical" href="https://sipwise.vercel.app/about" />
-        <meta property="og:title" content="Sipwise — About SIP Investing" />
-        <meta property="og:description" content="Learn what a Systematic Investment Plan (SIP) is, how the power of compounding works, and how our calculator computes your returns." />
+        <meta property="og:title" content="What is SIP? Systematic Investment Plan Explained | Sipwise" />
+        <meta property="og:description" content="Wondering what is SIP? Get the systematic investment plan explained simply, understand SIP compound interest, and learn how our SIP calculator works." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sipwise.vercel.app/about" />
         <meta property="og:image" content="https://sipwise.vercel.app/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Sipwise — About SIP Investing" />
-        <meta name="twitter:description" content="Learn what a Systematic Investment Plan (SIP) is, how the power of compounding works, and how our calculator computes your returns." />
+        <meta name="twitter:title" content="What is SIP? Systematic Investment Plan Explained | Sipwise" />
+        <meta name="twitter:description" content="Wondering what is SIP? Get the systematic investment plan explained simply, understand SIP compound interest, and learn how our SIP calculator works." />
         <meta name="twitter:image" content="https://sipwise.vercel.app/og-image.png" />
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
         </script>
       </Helmet>
-      
-      <h1 className="sr-only">About SIP Investing - Sipwise</h1>
 
       {/* About window */}
       <div className="bevel-out bg-background p-1">
@@ -65,9 +63,9 @@ export default function AboutPage() {
 
           {/* ── WHAT IS SIP? ─────────────────────────────── */}
           <section>
-            <h2 className="bg-title-bar text-white px-2 py-1 text-xs font-bold font-heading tracking-wide mb-3">
+            <h1 className="bg-title-bar text-white px-2 py-1 text-xs font-bold font-heading tracking-wide mb-3">
               WHAT IS SIP?
-            </h2>
+            </h1>
             <div className="space-y-3 text-sm leading-relaxed">
               <p>
                 A <strong>Systematic Investment Plan (SIP)</strong> is a method of investing a fixed
@@ -84,7 +82,7 @@ export default function AboutPage() {
               <p>
                 The real magic of SIP lies in <strong>compounding</strong>. Your returns generate their
                 own returns, and over long periods this snowball effect can turn modest monthly
-                contributions into substantial wealth. The earlier you start, the more time compounding
+                contributions into substantial wealth. Understanding SIP compound interest is key to long-term wealth creation. The earlier you start, the more time compounding
                 has to work in your favour.
               </p>
             </div>
@@ -218,7 +216,7 @@ export default function AboutPage() {
                          cursor-pointer retro-focus select-none inline-block text-center
                          hover:bg-[#d0d0d0] active:bevel-in no-underline text-black"
             >
-              &laquo; BACK TO CALCULATOR
+              &laquo; TRY THE SIP CALCULATOR
             </Link>
 
             {/* Hit-counter strip */}
