@@ -4,6 +4,7 @@ import Marquee from 'react-fast-marquee';
 import CalculatorPage from './components/CalculatorPage';
 import AboutPage from './components/AboutPage';
 import MarketPulsePage from './components/MarketPulsePage';
+import ComparisonPage from './components/ComparisonPage';
 
 // ESM Interop helper for react-fast-marquee
 const MarqueeComponent = Marquee && (Marquee.default || Marquee);
@@ -16,6 +17,7 @@ function App() {
     const titles = {
       '/about': 'Sipwise — About',
       '/market-pulse': 'Sipwise — Market Pulse',
+      '/compare': 'Sipwise — SIP vs FD vs RD',
     };
     document.title = titles[location.pathname] || 'Sipwise — SIP Calculator';
   }, [location.pathname]);
@@ -36,7 +38,9 @@ function App() {
                 ? '— ABOUT'
                 : location.pathname === '/market-pulse'
                   ? '— MARKET PULSE'
-                  : '— SIP CALCULATOR v1.00'}
+                  : location.pathname === '/compare'
+                    ? '— SIP vs FD vs RD'
+                    : '— SIP CALCULATOR v1.00'}
             </span>
           </div>
         </div>
@@ -50,7 +54,12 @@ function App() {
             Market Pulse
           </Link>
           <span className="cursor-pointer hover:underline">Edit</span>
-          <span className="cursor-pointer hover:underline">Run</span>
+          <Link
+            to="/compare"
+            className="cursor-pointer hover:underline no-underline text-black retro-focus"
+          >
+            Compare
+          </Link>
           <Link
             to="/about"
             className="cursor-pointer hover:underline no-underline text-black retro-focus"
@@ -77,6 +86,7 @@ function App() {
           <Route path="/" element={<CalculatorPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/market-pulse" element={<MarketPulsePage />} />
+          <Route path="/compare" element={<ComparisonPage />} />
         </Routes>
       </div>
 
