@@ -12,7 +12,11 @@ const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour
  * @returns {Promise<object>} Parsed chart result
  */
 async function fetchYahooChart(symbol) {
-  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=5y&interval=1mo`;
+  // Fetch 16 years of monthly data to support up to ~15 completed calendar years
+  // of yearly return calculation for the historical SIP simulation feature.
+  // The extra year provides the baseline (year-end close of the year before the
+  // oldest completed year) needed to compute that year's return.
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=16y&interval=1mo`;
   const res = await fetch(url, {
     headers: {
       'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -34,7 +38,10 @@ async function fetchYahooChart(symbol) {
 
 /**
  * Parse Yahoo chart result into structured index data.
- * Extracts current price, YTD %, and last 3 completed calendar years' returns.
+ * Extracts current price, YTD %, and yearly returns for all completed calendar
+ * years with sufficient data (up to ~15 years). The response shape is unchanged
+ * from the original — `yearly` just has more entries — so Market Pulse keeps
+ * working unmodified.
  */
 function parseChartData(result) {
   const meta = result.meta;
@@ -75,9 +82,11 @@ function parseChartData(result) {
     ? parseFloat((((current - lastYearEndClose) / lastYearEndClose) * 100).toFixed(2))
     : null;
 
-  // Last 3 completed calendar years
+  // Compute yearly returns for all completed calendar years with available data
+  // (up to 15 years back). Walk backwards from last completed year.
+  const MAX_HISTORY_YEARS = 15;
   const yearly = [];
-  for (let y = currentYear - 1; y >= currentYear - 3; y--) {
+  for (let y = currentYear - 1; y >= currentYear - MAX_HISTORY_YEARS; y--) {
     const endClose = findYearEndClose(y);
     const startClose = findYearEndClose(y - 1);
     if (endClose != null && startClose != null) {

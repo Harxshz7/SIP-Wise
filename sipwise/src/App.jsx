@@ -53,7 +53,12 @@ function App() {
           >
             Market Pulse
           </Link>
-          <span className="cursor-pointer hover:underline">Edit</span>
+          <Link
+            to="/market-pulse#simulation"
+            className="cursor-pointer hover:underline no-underline text-black retro-focus"
+          >
+            SIP Simulation
+          </Link>
           <Link
             to="/compare"
             className="cursor-pointer hover:underline no-underline text-black retro-focus"
