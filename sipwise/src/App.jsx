@@ -1,26 +1,17 @@
-import { useEffect } from 'react';
+import { Suspense, lazy } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import Marquee from 'react-fast-marquee';
-import CalculatorPage from './components/CalculatorPage';
-import AboutPage from './components/AboutPage';
-import MarketPulsePage from './components/MarketPulsePage';
-import ComparisonPage from './components/ComparisonPage';
+
+const CalculatorPage = lazy(() => import('./components/CalculatorPage'));
+const AboutPage = lazy(() => import('./components/AboutPage'));
+const MarketPulsePage = lazy(() => import('./components/MarketPulsePage'));
+const ComparisonPage = lazy(() => import('./components/ComparisonPage'));
 
 // ESM Interop helper for react-fast-marquee
 const MarqueeComponent = Marquee && (Marquee.default || Marquee);
 
 function App() {
   const location = useLocation();
-
-  // Update document title on route change
-  useEffect(() => {
-    const titles = {
-      '/about': 'Sipwise — About',
-      '/market-pulse': 'Sipwise — Market Pulse',
-      '/compare': 'Sipwise — SIP vs FD vs RD',
-    };
-    document.title = titles[location.pathname] || 'Sipwise — SIP Calculator';
-  }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-90s-tile text-black font-sans p-2 sm:p-6 flex flex-col justify-between">
@@ -46,7 +37,7 @@ function App() {
         </div>
 
         {/* Menu bar */}
-        <div className="flex items-center gap-4 px-2 py-1 text-xs border-b border-border-dark">
+        <nav aria-label="Main navigation" className="flex items-center gap-4 px-2 py-1 text-xs border-b border-border-dark">
           <Link
             to="/market-pulse"
             className="cursor-pointer hover:underline no-underline text-black retro-focus"
@@ -71,7 +62,7 @@ function App() {
           >
             About
           </Link>
-        </div>
+        </nav>
 
         {/* Marquee strip */}
         <div className="border-b border-border-dark bg-white text-xs py-1 select-none">
@@ -87,12 +78,14 @@ function App() {
         </div>
 
         {/* Route content area */}
-        <Routes>
-          <Route path="/" element={<CalculatorPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/market-pulse" element={<MarketPulsePage />} />
-          <Route path="/compare" element={<ComparisonPage />} />
-        </Routes>
+        <Suspense fallback={<div className="p-4 text-center font-mono text-sm">LOADING MODULE...</div>}>
+          <Routes>
+            <Route path="/" element={<CalculatorPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/market-pulse" element={<MarketPulsePage />} />
+            <Route path="/compare" element={<ComparisonPage />} />
+          </Routes>
+        </Suspense>
       </div>
 
       {/* Footer / Disclaimer with construction stripes */}

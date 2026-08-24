@@ -1,14 +1,52 @@
-import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
 export default function AboutPage() {
-  useEffect(() => {
-    document.title = 'Sipwise — About';
-    return () => { document.title = 'Sipwise'; };
-  }, []);
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is SIP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A Systematic Investment Plan (SIP) is a method of investing a fixed amount of money at regular intervals — typically monthly — into a mutual fund scheme."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Step-Up SIP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Annual Step-Up feature lets you increase your monthly contribution by a fixed percentage at the start of each year."
+        }
+      }
+    ]
+  };
 
   return (
     <div className="p-3 bg-background">
+      <Helmet>
+        <title>Sipwise — About SIP Investing</title>
+        <meta name="description" content="Learn what a Systematic Investment Plan (SIP) is, how the power of compounding works, and how our calculator computes your returns." />
+        <link rel="canonical" href="https://sipwise.vercel.app/about" />
+        <meta property="og:title" content="Sipwise — About SIP Investing" />
+        <meta property="og:description" content="Learn what a Systematic Investment Plan (SIP) is, how the power of compounding works, and how our calculator computes your returns." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://sipwise.vercel.app/about" />
+        <meta property="og:image" content="https://sipwise.vercel.app/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Sipwise — About SIP Investing" />
+        <meta name="twitter:description" content="Learn what a Systematic Investment Plan (SIP) is, how the power of compounding works, and how our calculator computes your returns." />
+        <meta name="twitter:image" content="https://sipwise.vercel.app/og-image.png" />
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      </Helmet>
+      
+      <h1 className="sr-only">About SIP Investing - Sipwise</h1>
+
       {/* About window */}
       <div className="bevel-out bg-background p-1">
 

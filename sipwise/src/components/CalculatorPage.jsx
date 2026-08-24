@@ -1,4 +1,5 @@
 import { useState, useMemo, useCallback } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { calculateSIP, calculateStepUpSIP, getYearlyBreakdown } from '../utils/sipCalculator';
 import { formatCurrency } from '../utils/formatCurrency';
 import InputPanel from './InputPanel';
@@ -38,8 +39,42 @@ export default function CalculatorPage() {
     return getYearlyBreakdown(monthlyAmount, annualRate, years, stepUpPercent);
   }, [inputs]);
 
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": ["WebApplication", "FinancialProduct"],
+    "name": "Sipwise SIP Calculator",
+    "description": "Calculate your Systematic Investment Plan returns with Sipwise.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  };
+
   return (
     <div className="p-3 bg-background grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-4">
+      <Helmet>
+        <title>Sipwise — Free SIP Calculator (India)</title>
+        <meta name="description" content="Calculate your Systematic Investment Plan returns with Sipwise. Easy, fast, and comprehensive tools for mutual fund investments." />
+        <link rel="canonical" href="https://sipwise.vercel.app/" />
+        <meta property="og:title" content="Sipwise — Free SIP Calculator (India)" />
+        <meta property="og:description" content="Calculate your Systematic Investment Plan returns with Sipwise. Easy, fast, and comprehensive tools for mutual fund investments." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://sipwise.vercel.app/" />
+        <meta property="og:image" content="https://sipwise.vercel.app/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Sipwise — Free SIP Calculator (India)" />
+        <meta name="twitter:description" content="Calculate your Systematic Investment Plan returns with Sipwise." />
+        <meta name="twitter:image" content="https://sipwise.vercel.app/og-image.png" />
+        <script type="application/ld+json">
+          {JSON.stringify(schemaData)}
+        </script>
+      </Helmet>
+      
+      <h1 className="sr-only">Free SIP Calculator (India)</h1>
+
       {/* Sidebar Panel (Inputs) */}
       <aside className="bevel-in bg-panelYellow p-4 flex flex-col justify-between">
         <div>

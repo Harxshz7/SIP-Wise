@@ -1,5 +1,5 @@
-// ComparisonPage — SIP vs FD vs RD comparison with overlaid chart, retro Win95 styling
 import { useState, useMemo, useCallback } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import {
   LineChart,
@@ -272,6 +272,21 @@ export default function ComparisonPage() {
 
   return (
     <div className="p-3 bg-background">
+      <Helmet>
+        <title>Sipwise — SIP vs FD vs RD Comparison</title>
+        <meta name="description" content="Compare Mutual Fund SIP returns against traditional Fixed Deposits (FD) and Recurring Deposits (RD) to make informed investment decisions." />
+        <link rel="canonical" href="https://sipwise.vercel.app/compare" />
+        <meta property="og:title" content="Sipwise — SIP vs FD vs RD Comparison" />
+        <meta property="og:description" content="Compare Mutual Fund SIP returns against traditional Fixed Deposits (FD) and Recurring Deposits (RD) to make informed investment decisions." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://sipwise.vercel.app/compare" />
+        <meta property="og:image" content="https://sipwise.vercel.app/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Sipwise — SIP vs FD vs RD Comparison" />
+        <meta name="twitter:description" content="Compare Mutual Fund SIP returns against traditional Fixed Deposits (FD) and Recurring Deposits (RD) to make informed investment decisions." />
+        <meta name="twitter:image" content="https://sipwise.vercel.app/og-image.png" />
+      </Helmet>
+
       {/* Comparison window */}
       <div className="bevel-out bg-background p-1">
 

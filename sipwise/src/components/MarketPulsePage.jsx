@@ -1,5 +1,6 @@
 // MarketPulsePage — Win95-style market data page with Real-History SIP Simulation
 import { useState, useEffect, useMemo, useCallback } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link, useLocation } from 'react-router-dom';
 import {
   LineChart,
@@ -613,6 +614,21 @@ export default function MarketPulsePage() {
 
   return (
     <div className="p-3 bg-background">
+      <Helmet>
+        <title>Sipwise — Nifty & Sensex Market Pulse</title>
+        <meta name="description" content="View historical returns for Nifty 50 and Sensex and run a real-history SIP simulation to see how your investments would have actually performed." />
+        <link rel="canonical" href="https://sipwise.vercel.app/market-pulse" />
+        <meta property="og:title" content="Sipwise — Nifty & Sensex Market Pulse" />
+        <meta property="og:description" content="View historical returns for Nifty 50 and Sensex and run a real-history SIP simulation to see how your investments would have actually performed." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://sipwise.vercel.app/market-pulse" />
+        <meta property="og:image" content="https://sipwise.vercel.app/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Sipwise — Nifty & Sensex Market Pulse" />
+        <meta name="twitter:description" content="View historical returns for Nifty 50 and Sensex and run a real-history SIP simulation to see how your investments would have actually performed." />
+        <meta name="twitter:image" content="https://sipwise.vercel.app/og-image.png" />
+      </Helmet>
+
       {/* Market Pulse window */}
       <div className="bevel-out bg-background p-1">
 
